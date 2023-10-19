@@ -53,7 +53,7 @@ export const ProcessingActivities: ProcessingActivitySourceOfTruth = {
       dataSubjects: [
         {
           name: DataSubjectName.EMPLOYEE,
-          personalData: [{ name: PersonalDataName.CPR }],
+          personalData: [{ name: PersonalDataName.CREDIT_CARD }],
         },
       ],
     },
