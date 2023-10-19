@@ -101,21 +101,25 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
                       </ul>
                     </>
                   )}
-                  <h4>Data Subjects</h4>
-                  <ul>
-                    {processingActivity.dataSubjects.map((dataSubject) => (
-                      <li key={"ds-list-" + dataSubject.name}>
-                        <p>{dataSubject.name}</p>
-                        <ul>
-                          {dataSubject.personalData.map((personalData) => (
-                            <li key={"pd-list-" + personalData.name}>
-                              {personalData.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    ))}
-                  </ul>
+                  {processingActivity.dataSubjects.length > 0 && (
+                    <>
+                      <h4>Data Subjects</h4>
+                      <ul>
+                        {processingActivity.dataSubjects.map((dataSubject) => (
+                          <li key={"ds-list-" + dataSubject.name}>
+                            <p>{dataSubject.name}</p>
+                            <ul>
+                              {dataSubject.personalData.map((personalData) => (
+                                <li key={"pd-list-" + personalData.name}>
+                                  {personalData.name}
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
               </div>
             ))}
