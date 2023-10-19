@@ -4,9 +4,11 @@ import styled, { keyframes } from "styled-components";
 const animation = keyframes`
     0% {
         color: green;
+        text-decoration: underline;
     }
     100% {
-        opacity: black;
+        color: black;
+        text-decoration: none;
     }
 `;
 const AnimateOnChantgeWrapper = styled.div`

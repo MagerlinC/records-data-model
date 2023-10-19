@@ -11,6 +11,7 @@ const DPOWrapper = styled.div`
   border-color: 1px solid #ebebebeb;
   color: black;
   background-color: #f5f5f5f5;
+
   .pa-list {
     display: flex;
     flex-direction: column;
@@ -43,7 +44,7 @@ type DPOProps = {
 const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
   return (
     <DPOWrapper>
-      <h2>I'm David the DPO, I only care about Processing Activities</h2>
+      <h2>David the DPO cares about Processing Activities</h2>
       <div className={"pa-list"}>
         {processingActivities.map((processingActivity) => (
           <ProcessingActivity>

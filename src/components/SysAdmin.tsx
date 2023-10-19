@@ -21,9 +21,11 @@ const ITSystem = styled.div`
 `;
 
 const ITSystemList = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 4px;
+  max-height: 50vh;
+  overflow-y: auto;
 `;
 
 type SysAdminProps = {
@@ -32,7 +34,7 @@ type SysAdminProps = {
 const SysAdmin: React.FC<SysAdminProps> = ({ itSystems }) => {
   return (
     <SysAdminWrapper>
-      <h2>I'm Simon the SysAdmin, I only care about IT Systems</h2>
+      <h2>Simon the SysAdmin cares about IT Systems</h2>
       <ITSystemList>
         {itSystems.map((itSystem) => (
           <ITSystem key={itSystem.name}>
