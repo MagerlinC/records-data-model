@@ -9,6 +9,12 @@ const AddButtonWrapper = styled.button`
   font-size: 0.8em;
   font-weight: lighter;
 `;
+
+const StyledInput = styled.input`
+  padding: 4px;
+  border-radius: 6px;
+`;
+
 type AddDataSubjectButtonProps = {
   text: string;
   onAddItem: (value: string) => void;
@@ -33,7 +39,7 @@ const AddButton: React.FC<AddDataSubjectButtonProps> = ({
   };
 
   return showInput ? (
-    <input
+    <StyledInput
       autoFocus={true}
       type="text"
       value={inputValue}
