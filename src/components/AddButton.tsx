@@ -24,6 +24,7 @@ const AddButton: React.FC<AddDataSubjectButtonProps> = ({ onAddItem }) => {
 
   return showInput ? (
     <input
+      autoFocus={true}
       type="text"
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}

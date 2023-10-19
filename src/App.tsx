@@ -56,11 +56,23 @@ const itSystemToITSystemWithDataByPA = (
 function App() {
   const [curData, setCurData] = useState(exampleData);
 
-  const addITSystem = (itSystemName: string) => {
+  const addITSystem = (itSystemName: string, paName: string) => {
     const mutatedData = { ...curData };
-    mutatedData.itSystems.push({
-      name: itSystemName,
-    });
+    if (
+      !mutatedData.itSystems.some((itSystem) => itSystem.name === itSystemName)
+    ) {
+      mutatedData.itSystems.push({
+        name: itSystemName,
+      });
+    }
+    const targetEntity = mutatedData.processingActivities.find(
+      (pa) => pa.name === paName
+    );
+    if (targetEntity) {
+      targetEntity.itSystems.push({
+        name: itSystemName,
+      });
+    }
     setCurData(mutatedData);
   };
 
