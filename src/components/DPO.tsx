@@ -138,16 +138,18 @@ const DPO: React.FC<DPOProps> = ({
                             />
                           </li>
                         ))}
-                        <AddButton
-                          onAddItem={(personalDataName) =>
-                            addPersonalData(
-                              personalDataName,
-                              dataSubject.name,
-                              processingActivity.name
-                            )
-                          }
-                          text="Add PD"
-                        />
+                        <li>
+                          <AddButton
+                            onAddItem={(personalDataName) =>
+                              addPersonalData(
+                                personalDataName,
+                                dataSubject.name,
+                                processingActivity.name
+                              )
+                            }
+                            text="Add PD"
+                          />
+                        </li>
                       </ul>
                     </li>
                   ))}

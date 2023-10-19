@@ -15,10 +15,6 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
     border-radius: 6px;
     padding: 4px;
   }
-  .scroll-wrapper {
-    max-height: 100%;
-    overflow-y: auto;
-  }
   .contents,
   .processing-activity-list,
   .it-system-list {
@@ -49,6 +45,11 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
   }
 `;
 
+const ScrollWrapper = styled.div`
+  overflow-y: scroll;
+  max-height: 75vh;
+`;
+
 type PASourceOfTruthVisualizerProps = {
   data: DataSet;
   resetData: () => void;
@@ -65,10 +66,10 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
         the left use.
       </p>
       <br />
-      <h3 className={"section-header"}>
-        Processing Activities (Owns the Data)
-      </h3>
-      <div className={"scroll-wrapper"}>
+      <ScrollWrapper>
+        <h3 className={"section-header"}>
+          Processing Activities (Owns the Data)
+        </h3>
         <div className={"contents"}>
           <div className={"processing-activity-list"}>
             {data.processingActivities.map((processingActivity) => (
@@ -118,7 +119,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
             </ul>
           </div>
         </div>
-      </div>
+      </ScrollWrapper>
       <button onClick={resetData}>Reset Data</button>
     </PASourceOfTruthVisualizerWrapper>
   );

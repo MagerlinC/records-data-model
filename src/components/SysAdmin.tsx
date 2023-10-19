@@ -20,18 +20,21 @@ const ITSystem = styled.div`
   padding: 8px;
 `;
 
-const ITSystemList = styled.div`
+const ITSystemGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
-  max-height: 450px;
-  overflow-y: auto;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
   gap: 18px;
+`;
+
+const ScrollWrapper = styled.div`
+  overflow-y: scroll;
+  max-height: 85vh;
 `;
 
 type SysAdminProps = {
@@ -61,79 +64,92 @@ const SysAdmin: React.FC<SysAdminProps> = ({
   return (
     <SysAdminWrapper>
       <h2>Simon the SysAdmin cares about IT Systems</h2>
-      <ITSystemList>
-        {itSystems.map((itSystem) => (
-          <ITSystem key={itSystem.name}>
-            <Row>
-              <h3>{itSystem.name}</h3>
-            </Row>
-            {itSystem.processingActivities.length > 0 && (
-              <>
-                <h4>Personal Data</h4>
-                <ul>
-                  {itSystem.processingActivities.map((processingActivity) => (
-                    <li key={"pa-" + processingActivity.name}>
-                      <RemovableElement
-                        name={processingActivity.name}
-                        onRemove={() =>
-                          removeITSystem(itSystem.name, processingActivity.name)
-                        }
-                      />
-                      <AddButton
-                        onAddItem={(dsName) =>
-                          addDataSubject(dsName, processingActivity.name)
-                        }
-                        text="Add Data Subject"
-                      />
-                      <ul>
-                        {processingActivity.dataSubjects.map((dataSubject) => (
-                          <li key={"sysadmin-ds-" + dataSubject.name}>
-                            <RemovableElement
-                              name={dataSubject.name}
-                              onRemove={() =>
-                                removeDataSubject(
-                                  dataSubject.name,
-                                  processingActivity.name
-                                )
+      <ScrollWrapper>
+        <ITSystemGrid>
+          {itSystems.map((itSystem) => (
+            <ITSystem key={itSystem.name}>
+              <Row>
+                <h3>{itSystem.name}</h3>
+              </Row>
+              {itSystem.processingActivities.length > 0 && (
+                <>
+                  <h4>Personal Data</h4>
+                  <ul>
+                    {itSystem.processingActivities.map((processingActivity) => (
+                      <li key={"pa-" + processingActivity.name}>
+                        <RemovableElement
+                          name={processingActivity.name}
+                          onRemove={() =>
+                            removeITSystem(
+                              itSystem.name,
+                              processingActivity.name
+                            )
+                          }
+                        />
+                        <ul>
+                          <li>
+                            <AddButton
+                              onAddItem={(dsName) =>
+                                addDataSubject(dsName, processingActivity.name)
                               }
+                              text="Add Data Subject"
                             />
-                            <ul>
-                              {dataSubject.personalData.map((personalData) => (
-                                <li key={"pd-" + personalData.name}>
-                                  <RemovableElement
-                                    name={personalData.name}
-                                    onRemove={() =>
-                                      removePersonalData(
-                                        personalData.name,
-                                        dataSubject.name,
-                                        processingActivity.name
-                                      )
-                                    }
-                                  />
-                                </li>
-                              ))}
-                              <AddButton
-                                onAddItem={(pdName) =>
-                                  addPersonalData(
-                                    pdName,
-                                    dataSubject.name,
-                                    processingActivity.name
-                                  )
-                                }
-                                text="Add PD"
-                              />
-                            </ul>
                           </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </ITSystem>
-        ))}
-      </ITSystemList>
+                          {processingActivity.dataSubjects.map(
+                            (dataSubject) => (
+                              <li key={"sysadmin-ds-" + dataSubject.name}>
+                                <RemovableElement
+                                  name={dataSubject.name}
+                                  onRemove={() =>
+                                    removeDataSubject(
+                                      dataSubject.name,
+                                      processingActivity.name
+                                    )
+                                  }
+                                />
+                                <ul>
+                                  {dataSubject.personalData.map(
+                                    (personalData) => (
+                                      <li key={"pd-" + personalData.name}>
+                                        <RemovableElement
+                                          name={personalData.name}
+                                          onRemove={() =>
+                                            removePersonalData(
+                                              personalData.name,
+                                              dataSubject.name,
+                                              processingActivity.name
+                                            )
+                                          }
+                                        />
+                                      </li>
+                                    )
+                                  )}
+                                  <li>
+                                    <AddButton
+                                      onAddItem={(pdName) =>
+                                        addPersonalData(
+                                          pdName,
+                                          dataSubject.name,
+                                          processingActivity.name
+                                        )
+                                      }
+                                      text="Add PD"
+                                    />
+                                  </li>
+                                </ul>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </ITSystem>
+          ))}
+        </ITSystemGrid>
+      </ScrollWrapper>
     </SysAdminWrapper>
   );
 };

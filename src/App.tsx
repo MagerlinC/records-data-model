@@ -40,14 +40,6 @@ const AppContents = styled.div`
   }
 `;
 
-const Column = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-`;
-
 const Row = styled.div`
   display: flex;
   flex-direction: row;
@@ -207,32 +199,28 @@ function App() {
         </p>
       </Row>
       <AppContents>
-        <Column>
-          <DPO
-            addITSystem={addITSystem}
-            addDataSubject={addDataSubject}
-            addPersonalData={addPersonalData}
-            removeITSystem={removeITSystem}
-            removeDataSubject={removeDataSubject}
-            removePersonalData={removePersonalData}
-            processingActivities={curData.processingActivities}
-          />
-          <SysAdmin
-            addDataSubject={addDataSubject}
-            addPersonalData={addPersonalData}
-            removeITSystem={(itSystem, pa) =>
-              removeITSystem(itSystem, pa, true)
-            }
-            removeDataSubject={removeDataSubject}
-            removePersonalData={removePersonalData}
-            itSystems={curData.itSystems.map((itSystem) =>
-              itSystemToITSystemWithDataByPA(
-                itSystem,
-                curData.processingActivities
-              )
-            )}
-          />
-        </Column>
+        <DPO
+          addITSystem={addITSystem}
+          addDataSubject={addDataSubject}
+          addPersonalData={addPersonalData}
+          removeITSystem={removeITSystem}
+          removeDataSubject={removeDataSubject}
+          removePersonalData={removePersonalData}
+          processingActivities={curData.processingActivities}
+        />
+        <SysAdmin
+          addDataSubject={addDataSubject}
+          addPersonalData={addPersonalData}
+          removeITSystem={(itSystem, pa) => removeITSystem(itSystem, pa, true)}
+          removeDataSubject={removeDataSubject}
+          removePersonalData={removePersonalData}
+          itSystems={curData.itSystems.map((itSystem) =>
+            itSystemToITSystemWithDataByPA(
+              itSystem,
+              curData.processingActivities
+            )
+          )}
+        />
         {showDataTruthVersion && (
           <PASourceOfTruthVisualizer resetData={resetData} data={curData} />
         )}
