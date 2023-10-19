@@ -106,55 +106,57 @@ const DPO: React.FC<DPOProps> = ({
                   </ul>
                 </FlexHalf>
               )}
-              <FlexHalf>
-                <h4>Data Subjects</h4>
-                <ul>
-                  {processingActivity.dataSubjects.map((dataSubject) => (
-                    <li key={dataSubject.name}>
-                      <RemovableElement
-                        name={dataSubject.name}
-                        onRemove={() =>
-                          removeDataSubject(
-                            dataSubject.name,
-                            processingActivity.name
-                          )
-                        }
-                      />
-                      <ul>
-                        {dataSubject.personalData.map((personalData) => (
-                          <li
-                            className={"list-item"}
-                            key={"dpo-pd-" + personalData.name}
-                          >
-                            <RemovableElement
-                              name={personalData.name}
-                              onRemove={() =>
-                                removePersonalData(
-                                  personalData.name,
+              {processingActivity.dataSubjects.length > 0 && (
+                <FlexHalf>
+                  <h4>Data Subjects</h4>
+                  <ul>
+                    {processingActivity.dataSubjects.map((dataSubject) => (
+                      <li key={dataSubject.name}>
+                        <RemovableElement
+                          name={dataSubject.name}
+                          onRemove={() =>
+                            removeDataSubject(
+                              dataSubject.name,
+                              processingActivity.name
+                            )
+                          }
+                        />
+                        <ul>
+                          {dataSubject.personalData.map((personalData) => (
+                            <li
+                              className={"list-item"}
+                              key={"dpo-pd-" + personalData.name}
+                            >
+                              <RemovableElement
+                                name={personalData.name}
+                                onRemove={() =>
+                                  removePersonalData(
+                                    personalData.name,
+                                    dataSubject.name,
+                                    processingActivity.name
+                                  )
+                                }
+                              />
+                            </li>
+                          ))}
+                          <li>
+                            <AddButton
+                              onAddItem={(personalDataName) =>
+                                addPersonalData(
+                                  personalDataName,
                                   dataSubject.name,
                                   processingActivity.name
                                 )
                               }
+                              text="Add PD"
                             />
                           </li>
-                        ))}
-                        <li>
-                          <AddButton
-                            onAddItem={(personalDataName) =>
-                              addPersonalData(
-                                personalDataName,
-                                dataSubject.name,
-                                processingActivity.name
-                              )
-                            }
-                            text="Add PD"
-                          />
-                        </li>
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </FlexHalf>
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </FlexHalf>
+              )}
             </Row>
           </ProcessingActivity>
         ))}
