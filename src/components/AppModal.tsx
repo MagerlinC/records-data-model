@@ -37,9 +37,9 @@ const AppModal: React.FC<AppModalProps> = ({ onClose }) => {
       </p>
       <br />
       Given these conditions, this application showcases how an underlying
-      single source of truth (bottom of page) could be utilized, while still
+      single source of truth (right side page) could be utilized, while still
       allowing people with different preferences to view the data through
-      different lenses (top of page).
+      different lenses (left side of page).
       <br />
       <br />
       <button onClick={onClose}>Okay, show me!</button>
