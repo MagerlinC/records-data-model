@@ -60,13 +60,13 @@ const Row = styled.div`
 
 type PASourceOfTruthVisualizerProps = {
   data: DataSet;
+  populateExampleData: () => void;
   resetData: () => void;
-  emptyData: () => void;
 };
 const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
   data,
+  populateExampleData,
   resetData,
-  emptyData,
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
@@ -135,8 +135,8 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
         </div>
       </ScrollWrapper>
       <Row>
-        <button onClick={emptyData}>Empty Data</button>
         <button onClick={resetData}>Reset Data</button>
+        <button onClick={populateExampleData}>Example Data</button>
       </Row>
     </PASourceOfTruthVisualizerWrapper>
   );

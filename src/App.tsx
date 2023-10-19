@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { exampleData } from "./data/pa-source-of-truth-example";
+import { DataSet, exampleData } from "./data/pa-source-of-truth-example";
 import styled from "styled-components";
 import DPO from "./components/DPO";
 import SysAdmin from "./components/SysAdmin";
@@ -59,11 +59,23 @@ const itSystemToITSystemWithDataByPA = (
     processingActivities: relatedPas,
   };
 };
-
+const cleanData = (dataSet: DataSet): DataSet => {
+  return {
+    itSystems: dataSet.itSystems.map((itSystem) => ({
+      ...itSystem,
+      processingActivities: [],
+    })),
+    processingActivities: dataSet.processingActivities.map((pa) => ({
+      ...pa,
+      itSystems: [],
+      dataSubjects: [],
+    })),
+  };
+};
 function App() {
   const [showModal, setShowModal] = useState(true);
   const [showDataTruthVersion, setShowDataTruthVersion] = useState(true);
-  const [curData, setCurData] = useState(structuredClone(exampleData));
+  const [curData, setCurData] = useState(cleanData(exampleData));
 
   const addITSystem = (itSystemName: string, paName: string) => {
     const mutatedData = { ...curData };
@@ -170,22 +182,8 @@ function App() {
     setCurData(mutatedData);
   };
 
-  const resetData = () => {
+  const populateExampleData = () => {
     setCurData(structuredClone(exampleData));
-  };
-
-  const emptyData = () => {
-    setCurData({
-      itSystems: curData.itSystems.map((itSystem) => ({
-        ...itSystem,
-        processingActivities: [],
-      })),
-      processingActivities: curData.processingActivities.map((pa) => ({
-        ...pa,
-        itSystems: [],
-        dataSubjects: [],
-      })),
-    });
   };
 
   return (
@@ -227,8 +225,8 @@ function App() {
         />
         {showDataTruthVersion && (
           <PASourceOfTruthVisualizer
-            emptyData={emptyData}
-            resetData={resetData}
+            resetData={() => setCurData(cleanData(curData))}
+            populateExampleData={populateExampleData}
             data={curData}
           />
         )}
