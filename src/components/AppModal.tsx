@@ -15,23 +15,24 @@ const AppModal: React.FC<AppModalProps> = ({ onClose }) => {
       </p>
       <br />
       <p>
-        A) Data can be processed in Processing Activities, without it being
-        processed in an IT system.
+        A) Data can be processed in <b>Processing Activities</b>, without it
+        being processed in an <b>IT System</b>.
         <p>
-          For example, you could process people's passports as part of your HR
-          Processing Activity.
+          For example, you could process people's passports as part of your HR{" "}
+          <b>Processing Activity</b>.
         </p>
       </p>
       <br />
       <p>
-        B) Data processed in an IT system must be done under a Processing
-        Activity.
+        B) Data processed in an <b>IT System</b> must be done under a{" "}
+        <b>Processing Activity</b>.
         <p>
           For example, you might use Microsoft Teams for both internal use and
-          for calling customers (two different processing activities), but you
-          can never use Teams without it being under some Processing Activity
-          wherein you process the data used in Teams. This also follows the need
-          for a processing purpose which allows you to process data in Teams.
+          for calling customers (two different <b>Processing Activities</b>),
+          but you can never use Teams without it being under some{" "}
+          <b>Processing Activity</b> wherein you process the data used in Teams.
+          This also follows from the requirement of having a processing purpose
+          which allows you to process data in Teams.
         </p>
       </p>
       <br />
