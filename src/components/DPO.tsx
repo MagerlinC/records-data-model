@@ -11,7 +11,6 @@ const DPOWrapper = styled.div`
   border-radius: 6px;
   color: black;
   background-color: #f5f5f5f5;
-
   .pa-list {
     display: flex;
     flex-direction: column;

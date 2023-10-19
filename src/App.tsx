@@ -14,9 +14,8 @@ import AppModal from "./components/AppModal";
 const Application = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  max-height: 100vh;
   max-width: 100vw;
-  width: 100vw;
   overflow: hidden;
   .title,
   .subtitle {
@@ -49,6 +48,13 @@ const Column = styled.div`
   gap: 16px;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px 16px;
+`;
+
 const itSystemToITSystemWithDataByPA = (
   itSystem: ITSystem,
   processingActivities: ProcessingActivitySource[]
@@ -72,7 +78,7 @@ function App() {
     if (
       !mutatedData.itSystems.some((itSystem) => itSystem.name === itSystemName)
     ) {
-      mutatedData.itSystems.push({
+      mutatedData.itSystems.unshift({
         name: itSystemName,
       });
     }
@@ -80,7 +86,7 @@ function App() {
       (pa) => pa.name === paName
     );
     if (targetEntity) {
-      targetEntity.itSystems.push({
+      targetEntity.itSystems.unshift({
         name: itSystemName,
       });
     }
@@ -117,7 +123,7 @@ function App() {
       (pa) => pa.name === paName
     );
     if (targetEntity) {
-      targetEntity.dataSubjects.push({
+      targetEntity.dataSubjects.unshift({
         name: dataSubjectName,
         personalData: [],
       });
@@ -189,15 +195,17 @@ function App() {
   return (
     <Application>
       {showModal && <AppModal onClose={() => setShowModal(false)} />}
-      <h1 className={"title"}>Compliance Data Model Playground</h1>
-      <p className="subtitle">
-        Show Underlying Data
-        <input
-          type="checkbox"
-          checked={showDataTruthVersion}
-          onChange={() => setShowDataTruthVersion(!showDataTruthVersion)}
-        />
-      </p>
+      <Row>
+        <h1 className={"title"}>Compliance Data Model Playground</h1>
+        <p className="subtitle">
+          Show Underlying Data
+          <input
+            type="checkbox"
+            checked={showDataTruthVersion}
+            onChange={() => setShowDataTruthVersion(!showDataTruthVersion)}
+          />
+        </p>
+      </Row>
       <AppContents>
         <Column>
           <DPO

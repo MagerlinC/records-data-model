@@ -11,7 +11,7 @@ const animation = keyframes`
         text-decoration: none;
     }
 `;
-const AnimateOnChantgeWrapper = styled.div`
+const AnimateOnChangeWrapper = styled.div`
   animation-name: ${animation};
   animation-duration: 4s;
 `;
@@ -20,6 +20,6 @@ type AnimateOnChangeProps = {
   children: React.ReactNode;
 };
 const AnimateOnChange: React.FC<AnimateOnChangeProps> = ({ children }) => {
-  return <AnimateOnChantgeWrapper>{children}</AnimateOnChantgeWrapper>;
+  return <AnimateOnChangeWrapper>{children}</AnimateOnChangeWrapper>;
 };
 export default AnimateOnChange;
