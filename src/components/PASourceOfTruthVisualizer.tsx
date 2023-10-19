@@ -55,7 +55,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
-      <h2>Data Truth</h2>
+      <h2>Underlying Data Truth</h2>
       <div className={"contents"}>
         {data.processingActivities.map((processingActivity) => (
           <div>
