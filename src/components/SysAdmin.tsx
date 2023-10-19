@@ -46,17 +46,17 @@ const SysAdmin: React.FC<SysAdminProps> = ({ itSystems }) => {
                 <h4>Personal Data</h4>
                 <ul>
                   {itSystem.processingActivities.map((pa) => (
-                    <li>
+                    <li key={"pa-" + pa.name}>
                       <AnimateOnChange>{pa.name}</AnimateOnChange>
                       <ul>
                         {pa.dataSubjects.map((dataSubject) => (
-                          <li>
+                          <li key={"sysadmin-ds-" + dataSubject.name}>
                             <AnimateOnChange>
                               {dataSubject.name}
                             </AnimateOnChange>
                             <ul>
                               {dataSubject.personalData.map((personalData) => (
-                                <li>
+                                <li key={"pd-" + personalData.name}>
                                   <AnimateOnChange>
                                     {personalData.name}
                                   </AnimateOnChange>

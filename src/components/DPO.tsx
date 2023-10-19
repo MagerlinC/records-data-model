@@ -47,14 +47,14 @@ const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
       <h2>David the DPO cares about Processing Activities</h2>
       <div className={"pa-list"}>
         {processingActivities.map((processingActivity) => (
-          <ProcessingActivity>
+          <ProcessingActivity key={"dpo-pa-" + processingActivity.name}>
             <h3>{processingActivity.name}</h3>
             <Row>
               <FlexHalf>
                 <h4>IT systems</h4>
                 <ul>
                   {processingActivity.itSystems.map((itSystem) => (
-                    <li>
+                    <li key={"dpo-it-" + itSystem.name}>
                       <AnimateOnChange>{itSystem.name}</AnimateOnChange>
                     </li>
                   ))}
@@ -64,11 +64,11 @@ const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
                 <h4>Data Subjects</h4>
                 <ul>
                   {processingActivity.dataSubjects.map((dataSubject) => (
-                    <li>
+                    <li key={dataSubject.name}>
                       <AnimateOnChange>{dataSubject.name}</AnimateOnChange>
                       <ul>
                         {dataSubject.personalData.map((personalData) => (
-                          <li>
+                          <li key={"dpo-pd-" + personalData.name}>
                             <AnimateOnChange>
                               {personalData.name}
                             </AnimateOnChange>

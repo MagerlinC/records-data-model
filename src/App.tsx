@@ -57,7 +57,7 @@ const itSystemToITSystemWithDataByPA = (
 
 function App() {
   const [showModal, setShowModal] = useState(true);
-  const [curData, setCurData] = useState(exampleData);
+  const [curData, setCurData] = useState(structuredClone(exampleData));
 
   const addITSystem = (itSystemName: string, paName: string) => {
     const mutatedData = { ...curData };
@@ -115,6 +115,10 @@ function App() {
     setCurData(mutatedData);
   };
 
+  const resetData = () => {
+    setCurData(structuredClone(exampleData));
+  };
+
   return (
     <Application>
       {showModal && <AppModal onClose={() => setShowModal(false)} />}
@@ -135,6 +139,7 @@ function App() {
           addITSystem={addITSystem}
           addDataSubject={addDataSubject}
           addPersonalData={addPersonalData}
+          resetData={resetData}
           data={curData}
         />
       </AppContents>

@@ -52,12 +52,14 @@ type PASourceOfTruthVisualizerProps = {
     dataSubjectName: string,
     PAName: string
   ) => void;
+  resetData: () => void;
 };
 const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
   data,
   addITSystem,
   addDataSubject,
   addPersonalData,
+  resetData,
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
@@ -65,7 +67,10 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
       <div className={"scroll-wrapper"}>
         <div className={"contents"}>
           {data.processingActivities.map((processingActivity) => (
-            <div className={"processing-activity"}>
+            <div
+              key={"pa-list-" + processingActivity.name}
+              className={"processing-activity"}
+            >
               <h3>{processingActivity.name}</h3>
               <div className={"pa-contents"}>
                 <h4>
@@ -79,7 +84,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
                 </h4>
                 <ul>
                   {processingActivity.itSystems.map((itSystem) => (
-                    <li>{itSystem.name}</li>
+                    <li key={"it-list-" + itSystem.name}>{itSystem.name}</li>
                   ))}
                 </ul>
                 <h4>
@@ -93,7 +98,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
                 </h4>
                 <ul>
                   {processingActivity.dataSubjects.map((dataSubject) => (
-                    <li>
+                    <li key={"ds-list-" + dataSubject.name}>
                       <p>
                         {dataSubject.name}{" "}
                         <AddButton
@@ -109,7 +114,9 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
                       </p>
                       <ul>
                         {dataSubject.personalData.map((personalData) => (
-                          <li>{personalData.name}</li>
+                          <li key={"pd-list-" + personalData.name}>
+                            {personalData.name}
+                          </li>
                         ))}
                       </ul>
                     </li>
@@ -120,6 +127,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
           ))}
         </div>
       </div>
+      <button onClick={resetData}>Reset Data</button>
     </PASourceOfTruthVisualizerWrapper>
   );
 };
