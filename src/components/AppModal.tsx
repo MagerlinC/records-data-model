@@ -42,11 +42,6 @@ const AppModal: React.FC<AppModalProps> = ({ onClose }) => {
       different lenses (left side of page).
       <br />
       <br />
-      In this example, you will be editing data directly in the data truth. In
-      reality, the buttons allowing this editing could be placed inside any of
-      the views on the left as well.
-      <br />
-      <br />
       <button onClick={onClose}>Okay, show me!</button>
     </Modal>
   );

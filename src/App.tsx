@@ -18,8 +18,15 @@ const Application = styled.div`
   max-width: 100vw;
   width: 100vw;
   overflow: hidden;
-  h1 {
+  .title,
+  .subtitle {
     text-align: center;
+  }
+  .subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -57,6 +64,7 @@ const itSystemToITSystemWithDataByPA = (
 
 function App() {
   const [showModal, setShowModal] = useState(true);
+  const [showDataTruthVersion, setShowDataTruthVersion] = useState(true);
   const [curData, setCurData] = useState(structuredClone(exampleData));
 
   const addITSystem = (itSystemName: string, paName: string) => {
@@ -79,6 +87,19 @@ function App() {
     setCurData(mutatedData);
   };
 
+  const removeITSystem = (itSystemName: string, paName: string) => {
+    const mutatedData = { ...curData };
+    const targetEntity = mutatedData.processingActivities.find(
+      (pa) => pa.name === paName
+    );
+    if (targetEntity) {
+      targetEntity.itSystems = targetEntity.itSystems.filter(
+        (itSystem) => itSystem.name !== itSystemName
+      );
+    }
+    setCurData(mutatedData);
+  };
+
   const addDataSubject = (dataSubjectName: string, paName: string) => {
     const mutatedData = { ...curData };
     const targetEntity = mutatedData.processingActivities.find(
@@ -89,6 +110,19 @@ function App() {
         name: dataSubjectName,
         personalData: [],
       });
+    }
+    setCurData(mutatedData);
+  };
+
+  const removeDataSubject = (dataSubjectName: string, paName: string) => {
+    const mutatedData = { ...curData };
+    const targetEntity = mutatedData.processingActivities.find(
+      (pa) => pa.name === paName
+    );
+    if (targetEntity) {
+      targetEntity.dataSubjects = targetEntity.dataSubjects.filter(
+        (ds) => ds.name !== dataSubjectName
+      );
     }
     setCurData(mutatedData);
   };
@@ -115,6 +149,28 @@ function App() {
     setCurData(mutatedData);
   };
 
+  const removePersonalData = (
+    personalDataName: string,
+    dataSubjectName: string,
+    paName: string
+  ) => {
+    const mutatedData = { ...curData };
+    const targetEntity = mutatedData.processingActivities.find(
+      (pa) => pa.name === paName
+    );
+    if (targetEntity) {
+      const targetDataSubject = targetEntity.dataSubjects.find(
+        (ds) => ds.name === dataSubjectName
+      );
+      if (targetDataSubject) {
+        targetDataSubject.personalData = targetDataSubject.personalData.filter(
+          (pd) => pd.name !== personalDataName
+        );
+      }
+    }
+    setCurData(mutatedData);
+  };
+
   const resetData = () => {
     setCurData(structuredClone(exampleData));
   };
@@ -122,10 +178,26 @@ function App() {
   return (
     <Application>
       {showModal && <AppModal onClose={() => setShowModal(false)} />}
-      <h1>Compliance Data Model Playground</h1>
+      <h1 className={"title"}>Compliance Data Model Playground</h1>
+      <p className="subtitle">
+        Use Data Truth
+        <input
+          type="checkbox"
+          checked={showDataTruthVersion}
+          onChange={() => setShowDataTruthVersion(!showDataTruthVersion)}
+        />
+      </p>
       <AppContents>
         <Column>
-          <DPO processingActivities={curData.processingActivities} />
+          <DPO
+            addITSystem={addITSystem}
+            addDataSubject={addDataSubject}
+            addPersonalData={addPersonalData}
+            removeITSystem={removeITSystem}
+            removeDataSubject={removeDataSubject}
+            removePersonalData={removePersonalData}
+            processingActivities={curData.processingActivities}
+          />
           <SysAdmin
             itSystems={curData.itSystems.map((itSystem) =>
               itSystemToITSystemWithDataByPA(
@@ -135,13 +207,9 @@ function App() {
             )}
           />
         </Column>
-        <PASourceOfTruthVisualizer
-          addITSystem={addITSystem}
-          addDataSubject={addDataSubject}
-          addPersonalData={addPersonalData}
-          resetData={resetData}
-          data={curData}
-        />
+        {showDataTruthVersion && (
+          <PASourceOfTruthVisualizer resetData={resetData} data={curData} />
+        )}
       </AppContents>
     </Application>
   );

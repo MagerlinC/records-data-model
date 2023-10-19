@@ -4,7 +4,10 @@ import {
   PAName,
   PersonalDataName,
 } from "./data-names";
-import { ProcessingActivitySourceOfTruth } from "./types/pa-source-of-truth";
+import {
+  ProcessingActivitySource,
+  ProcessingActivitySourceOfTruth,
+} from "./types/pa-source-of-truth";
 import { ITSystem } from "./types/types";
 
 export const ITSystems: ITSystem[] = [
@@ -59,8 +62,11 @@ export const ProcessingActivities: ProcessingActivitySourceOfTruth = {
     },
   ],
 };
-
-export const exampleData = {
+export interface DataSet {
+  itSystems: ITSystem[];
+  processingActivities: ProcessingActivitySource[];
+}
+export const exampleData: DataSet = {
   itSystems: ITSystems,
   processingActivities: ProcessingActivities.processingActivities,
 };

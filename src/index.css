@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+.remove-item {
+  color: red;
+  cursor: pointer;
+  &:hover {
+    color: pink;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 6px;

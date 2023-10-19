@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { ProcessingActivitySource } from "../data/types/pa-source-of-truth";
-import AnimateOnChange from "./AnimateOnChange";
+import AddButton from "./AddButton";
+import RemovableElement from "./RemovableElement";
 
 const DPOWrapper = styled.div`
   display: flex;
@@ -41,23 +42,67 @@ const FlexHalf = styled.div`
 
 type DPOProps = {
   processingActivities: ProcessingActivitySource[];
+  addITSystem: (itSystemName: string, paName: string) => void;
+  addDataSubject: (dataSubjectName: string, paName: string) => void;
+  addPersonalData: (
+    personalDataName: string,
+    dataSubjectName: string,
+    paName: string
+  ) => void;
+  removeITSystem: (itSystemName: string, paName: string) => void;
+  removeDataSubject: (dataSubjectName: string, paName: string) => void;
+  removePersonalData: (
+    personalDataName: string,
+    dataSubjectName: string,
+    paName: string
+  ) => void;
 };
-const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
+const DPO: React.FC<DPOProps> = ({
+  processingActivities,
+  addITSystem,
+  addDataSubject,
+  addPersonalData,
+  removeITSystem,
+  removeDataSubject,
+  removePersonalData,
+}) => {
   return (
     <DPOWrapper>
       <h2>David the DPO cares about Processing Activities</h2>
       <div className={"pa-list"}>
         {processingActivities.map((processingActivity) => (
           <ProcessingActivity key={"dpo-pa-" + processingActivity.name}>
-            <h3>{processingActivity.name}</h3>
+            <Row>
+              <h3>{processingActivity.name}</h3>
+              <AddButton
+                onAddItem={(systemName) =>
+                  addITSystem(systemName, processingActivity.name)
+                }
+                text="Add IT System"
+              />
+              <AddButton
+                onAddItem={(dataSubjectName) =>
+                  addDataSubject(dataSubjectName, processingActivity.name)
+                }
+                text="Add Data Subject"
+              />
+            </Row>
             <Row>
               {processingActivity.itSystems.length > 0 && (
                 <FlexHalf>
-                  <h4>IT systems</h4>
+                  <h4>IT systems </h4>
                   <ul>
                     {processingActivity.itSystems.map((itSystem) => (
                       <li key={"dpo-it-" + itSystem.name}>
-                        <AnimateOnChange>{itSystem.name}</AnimateOnChange>
+                        <RemovableElement
+                          name={itSystem.name}
+                          onRemove={() =>
+                            removeITSystem(
+                              itSystem.name,
+                              processingActivity.name
+                            )
+                          }
+                        />
                       </li>
                     ))}
                   </ul>
@@ -68,15 +113,43 @@ const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
                 <ul>
                   {processingActivity.dataSubjects.map((dataSubject) => (
                     <li key={dataSubject.name}>
-                      <AnimateOnChange>{dataSubject.name}</AnimateOnChange>
+                      <RemovableElement
+                        name={dataSubject.name}
+                        onRemove={() =>
+                          removeDataSubject(
+                            dataSubject.name,
+                            processingActivity.name
+                          )
+                        }
+                      />
                       <ul>
                         {dataSubject.personalData.map((personalData) => (
-                          <li key={"dpo-pd-" + personalData.name}>
-                            <AnimateOnChange>
-                              {personalData.name}
-                            </AnimateOnChange>
+                          <li
+                            className={"list-item"}
+                            key={"dpo-pd-" + personalData.name}
+                          >
+                            <RemovableElement
+                              name={personalData.name}
+                              onRemove={() =>
+                                removePersonalData(
+                                  personalData.name,
+                                  dataSubject.name,
+                                  processingActivity.name
+                                )
+                              }
+                            />
                           </li>
                         ))}
+                        <AddButton
+                          onAddItem={(personalDataName) =>
+                            addPersonalData(
+                              personalDataName,
+                              dataSubject.name,
+                              processingActivity.name
+                            )
+                          }
+                          text="Add PD"
+                        />
                       </ul>
                     </li>
                   ))}

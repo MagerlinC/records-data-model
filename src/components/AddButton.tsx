@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const AddButtonWrapper = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 4px;
   padding: 2px 4px;
