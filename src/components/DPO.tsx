@@ -36,6 +36,7 @@ const Row = styled.div`
 const FlexHalf = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 0.5;
 `;
 
 type DPOProps = {
