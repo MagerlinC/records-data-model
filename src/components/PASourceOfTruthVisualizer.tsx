@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ProcessingActivitySourceOfTruth } from "../data/types/pa-source-of-truth";
 import { DataSet } from "../data/pa-source-of-truth-example";
 
 const PASourceOfTruthVisualizerWrapper = styled.div`
