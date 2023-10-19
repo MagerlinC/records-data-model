@@ -85,22 +85,12 @@ function App() {
     setCurData(mutatedData);
   };
 
-  const removeITSystem = (
-    itSystemName: string,
-    paName: string,
-    keepItSystem?: boolean
-  ) => {
+  const removeITSystem = (itSystemName: string, paName: string) => {
     const mutatedData = { ...curData };
     const targetEntity = mutatedData.processingActivities.find(
       (pa) => pa.name === paName
     );
 
-    const curIndex = mutatedData.itSystems.findIndex(
-      (el) => el.name === itSystemName
-    );
-    if (!keepItSystem && curIndex !== -1) {
-      mutatedData.itSystems.splice(curIndex, 1);
-    }
     if (targetEntity) {
       targetEntity.itSystems = targetEntity.itSystems.filter(
         (itSystem) => itSystem.name !== itSystemName
@@ -211,7 +201,7 @@ function App() {
         <SysAdmin
           addDataSubject={addDataSubject}
           addPersonalData={addPersonalData}
-          removeITSystem={(itSystem, pa) => removeITSystem(itSystem, pa, true)}
+          removeITSystem={(itSystem, pa) => removeITSystem(itSystem, pa)}
           removeDataSubject={removeDataSubject}
           removePersonalData={removePersonalData}
           itSystems={curData.itSystems.map((itSystem) =>
