@@ -50,13 +50,23 @@ const ScrollWrapper = styled.div`
   max-height: 75vh;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: flex-end;
+  gap: 4px;
+`;
+
 type PASourceOfTruthVisualizerProps = {
   data: DataSet;
   resetData: () => void;
+  emptyData: () => void;
 };
 const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
   data,
   resetData,
+  emptyData,
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
@@ -120,7 +130,10 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
           </div>
         </div>
       </ScrollWrapper>
-      <button onClick={resetData}>Reset Data</button>
+      <Row>
+        <button onClick={emptyData}>Empty Data</button>
+        <button onClick={resetData}>Reset Data</button>
+      </Row>
     </PASourceOfTruthVisualizerWrapper>
   );
 };

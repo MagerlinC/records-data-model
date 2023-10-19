@@ -174,6 +174,20 @@ function App() {
     setCurData(structuredClone(exampleData));
   };
 
+  const emptyData = () => {
+    setCurData({
+      itSystems: curData.itSystems.map((itSystem) => ({
+        ...itSystem,
+        processingActivities: [],
+      })),
+      processingActivities: curData.processingActivities.map((pa) => ({
+        ...pa,
+        itSystems: [],
+        dataSubjects: [],
+      })),
+    });
+  };
+
   return (
     <Application>
       {showModal && <AppModal onClose={() => setShowModal(false)} />}
@@ -212,7 +226,11 @@ function App() {
           )}
         />
         {showDataTruthVersion && (
-          <PASourceOfTruthVisualizer resetData={resetData} data={curData} />
+          <PASourceOfTruthVisualizer
+            emptyData={emptyData}
+            resetData={resetData}
+            data={curData}
+          />
         )}
       </AppContents>
     </Application>
