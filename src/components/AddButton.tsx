@@ -3,11 +3,15 @@ import styled from "styled-components";
 
 const AddButtonWrapper = styled.button`
   border: none;
-  border-radius: 6px;
-  padding: 4px 6px;
+  border-radius: 4px;
+  padding: 2px 4px;
   background-color: #673ab7;
+  text-align: center;
   font-size: 0.8em;
   font-weight: lighter;
+  &:hover {
+    outline: 1px solid white;
+  }
 `;
 
 const StyledInput = styled.input`
