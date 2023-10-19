@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  ProcessingActivities,
-  exampleData,
-} from "./data/pa-source-of-truth-example";
+import { exampleData } from "./data/pa-source-of-truth-example";
 import styled from "styled-components";
 import DPO from "./components/DPO";
 import SysAdmin from "./components/SysAdmin";
