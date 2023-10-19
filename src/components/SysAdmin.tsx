@@ -24,7 +24,7 @@ const ITSystemList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
-  max-height: 50vh;
+  max-height: 450px;
   overflow-y: auto;
 `;
 
