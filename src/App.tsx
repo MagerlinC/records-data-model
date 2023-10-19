@@ -191,7 +191,7 @@ function App() {
       {showModal && <AppModal onClose={() => setShowModal(false)} />}
       <h1 className={"title"}>Compliance Data Model Playground</h1>
       <p className="subtitle">
-        Show Data Truth
+        Show Underlying Data
         <input
           type="checkbox"
           checked={showDataTruthVersion}

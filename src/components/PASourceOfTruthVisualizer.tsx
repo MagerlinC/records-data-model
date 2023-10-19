@@ -59,7 +59,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
-      <h2>Underlying Data Truth</h2>
+      <h2>Underlying Data</h2>
       <p>
         This indicates the single-source-of-truth database, which the views on
         the left use.
