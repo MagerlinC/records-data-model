@@ -23,6 +23,10 @@ a:hover {
   color: #535bf2;
 }
 
+h1 {
+  margin: 6px;
+}
+
 p,
 h3,
 h4,

@@ -9,6 +9,12 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
   gap: 4px;
   margin-top: 8px;
   border-top: 1px solid white;
+  flex: 1;
+  overflow: hidden;
+  .contents {
+    max-height: 400px;
+    overflow-y: auto;
+  }
   .pa-contents {
     display: flex;
     flex-direction: column;
@@ -50,57 +56,59 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
   return (
     <PASourceOfTruthVisualizerWrapper>
       <h2>Data Truth</h2>
-      {data.processingActivities.map((processingActivity) => (
-        <>
-          <h3 className={"processing-activity"}>{processingActivity.name}</h3>
-          <div className={"pa-contents"}>
-            <h4>
-              IT Systems{" "}
-              <AddButton
-                onAddItem={(itSystemName) =>
-                  addITSystem(itSystemName, processingActivity.name)
-                }
-              />
-            </h4>
-            <ul>
-              {processingActivity.itSystems.map((itSystem) => (
-                <li>{itSystem.name}</li>
-              ))}
-            </ul>
-            <h4>
-              Data Subjects
-              <AddButton
-                onAddItem={(dataSubjectName) =>
-                  addDataSubject(dataSubjectName, processingActivity.name)
-                }
-              />
-            </h4>
-            <ul>
-              {processingActivity.dataSubjects.map((dataSubject) => (
-                <li>
-                  <p>
-                    {dataSubject.name}{" "}
-                    <AddButton
-                      onAddItem={(personalDataName) =>
-                        addPersonalData(
-                          personalDataName,
-                          dataSubject.name,
-                          processingActivity.name
-                        )
-                      }
-                    />
-                  </p>
-                  <ul>
-                    {dataSubject.personalData.map((personalData) => (
-                      <li>{personalData.name}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+      <div className={"contents"}>
+        {data.processingActivities.map((processingActivity) => (
+          <div>
+            <h3 className={"processing-activity"}>{processingActivity.name}</h3>
+            <div className={"pa-contents"}>
+              <h4>
+                IT Systems{" "}
+                <AddButton
+                  onAddItem={(itSystemName) =>
+                    addITSystem(itSystemName, processingActivity.name)
+                  }
+                />
+              </h4>
+              <ul>
+                {processingActivity.itSystems.map((itSystem) => (
+                  <li>{itSystem.name}</li>
+                ))}
+              </ul>
+              <h4>
+                Data Subjects
+                <AddButton
+                  onAddItem={(dataSubjectName) =>
+                    addDataSubject(dataSubjectName, processingActivity.name)
+                  }
+                />
+              </h4>
+              <ul>
+                {processingActivity.dataSubjects.map((dataSubject) => (
+                  <li>
+                    <p>
+                      {dataSubject.name}{" "}
+                      <AddButton
+                        onAddItem={(personalDataName) =>
+                          addPersonalData(
+                            personalDataName,
+                            dataSubject.name,
+                            processingActivity.name
+                          )
+                        }
+                      />
+                    </p>
+                    <ul>
+                      {dataSubject.personalData.map((personalData) => (
+                        <li>{personalData.name}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </>
-      ))}
+        ))}
+      </div>
     </PASourceOfTruthVisualizerWrapper>
   );
 };
