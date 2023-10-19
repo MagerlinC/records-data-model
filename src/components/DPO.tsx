@@ -9,7 +9,6 @@ const DPOWrapper = styled.div`
   flex-direction: column;
   padding: 8px;
   border-radius: 6px;
-  border-color: 1px solid #ebebebeb;
   color: black;
   background-color: #f5f5f5f5;
 
@@ -90,7 +89,7 @@ const DPO: React.FC<DPOProps> = ({
             <Row>
               {processingActivity.itSystems.length > 0 && (
                 <FlexHalf>
-                  <h4>IT systems </h4>
+                  <h4>IT systems</h4>
                   <ul>
                     {processingActivity.itSystems.map((itSystem) => (
                       <li key={"dpo-it-" + itSystem.name}>

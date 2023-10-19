@@ -8,7 +8,7 @@ const AddButtonWrapper = styled.button`
   justify-content: center;
   border: none;
   border-radius: 4px;
-  padding: 2px 4px;
+  padding: 2px 6px;
   background-color: #673ab7;
   text-align: center;
   font-size: 0.8em;

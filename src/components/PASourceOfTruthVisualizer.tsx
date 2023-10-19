@@ -10,6 +10,11 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  .section-header {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 4px;
+  }
   .scroll-wrapper {
     max-height: 100%;
     overflow-y: auto;
@@ -20,6 +25,7 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin: 0 4px;
   }
   .pa-contents {
     display: flex;
@@ -53,7 +59,15 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
 }) => {
   return (
     <PASourceOfTruthVisualizerWrapper>
-      <h2>Underlying Data Truth (PA-focused)</h2>
+      <h2>Underlying Data Truth</h2>
+      <p>
+        This indicates the single-source-of-truth database, which the views on
+        the left use.
+      </p>
+      <br />
+      <h3 className={"section-header"}>
+        Processing Activities (Owns the Data)
+      </h3>
       <div className={"scroll-wrapper"}>
         <div className={"contents"}>
           <div className={"processing-activity-list"}>
@@ -64,12 +78,18 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
               >
                 <h3>{processingActivity.name}</h3>
                 <div className={"pa-contents"}>
-                  <h4>IT Systems</h4>
-                  <ul>
-                    {processingActivity.itSystems.map((itSystem) => (
-                      <li key={"it-list-" + itSystem.name}>{itSystem.name}</li>
-                    ))}
-                  </ul>
+                  {processingActivity.itSystems.length > 0 && (
+                    <>
+                      <h4>IT Systems</h4>
+                      <ul>
+                        {processingActivity.itSystems.map((itSystem) => (
+                          <li key={"it-list-" + itSystem.name}>
+                            {itSystem.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                   <h4>Data Subjects</h4>
                   <ul>
                     {processingActivity.dataSubjects.map((dataSubject) => (
@@ -90,7 +110,7 @@ const PASourceOfTruthVisualizer: React.FC<PASourceOfTruthVisualizerProps> = ({
             ))}
           </div>
           <div className={"it-system-list"}>
-            <h2>IT Systems</h2>
+            <h3 className={"section-header"}>IT Systems (Points to Data)</h3>
             <ul>
               {data.itSystems.map((itSystem) => (
                 <li key={"it-system-list-" + itSystem.name}>{itSystem.name}</li>

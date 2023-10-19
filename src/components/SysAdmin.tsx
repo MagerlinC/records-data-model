@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { ITSystemWithDataByPA } from "../data/types/pa-source-of-truth";
-import AnimateOnChange from "./AnimateOnChange";
 import AddButton from "./AddButton";
 import RemovableElement from "./RemovableElement";
 
@@ -10,7 +9,6 @@ const SysAdminWrapper = styled.div`
   flex-direction: column;
   padding: 8px;
   border-radius: 6px;
-  border-color: 1px solid #ebebebeb;
   color: black;
   background-color: #f5f5f5f5;
 `;
@@ -80,6 +78,12 @@ const SysAdmin: React.FC<SysAdminProps> = ({
                         onRemove={() =>
                           removeITSystem(itSystem.name, processingActivity.name)
                         }
+                      />
+                      <AddButton
+                        onAddItem={(dsName) =>
+                          addDataSubject(dsName, processingActivity.name)
+                        }
+                        text="Add Data Subject"
                       />
                       <ul>
                         {processingActivity.dataSubjects.map((dataSubject) => (
