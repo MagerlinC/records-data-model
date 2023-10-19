@@ -51,16 +51,18 @@ const DPO: React.FC<DPOProps> = ({ processingActivities }) => {
           <ProcessingActivity key={"dpo-pa-" + processingActivity.name}>
             <h3>{processingActivity.name}</h3>
             <Row>
-              <FlexHalf>
-                <h4>IT systems</h4>
-                <ul>
-                  {processingActivity.itSystems.map((itSystem) => (
-                    <li key={"dpo-it-" + itSystem.name}>
-                      <AnimateOnChange>{itSystem.name}</AnimateOnChange>
-                    </li>
-                  ))}
-                </ul>
-              </FlexHalf>
+              {processingActivity.itSystems.length > 0 && (
+                <FlexHalf>
+                  <h4>IT systems</h4>
+                  <ul>
+                    {processingActivity.itSystems.map((itSystem) => (
+                      <li key={"dpo-it-" + itSystem.name}>
+                        <AnimateOnChange>{itSystem.name}</AnimateOnChange>
+                      </li>
+                    ))}
+                  </ul>
+                </FlexHalf>
+              )}
               <FlexHalf>
                 <h4>Data Subjects</h4>
                 <ul>

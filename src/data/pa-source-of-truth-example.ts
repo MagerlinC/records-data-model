@@ -47,6 +47,16 @@ export const ProcessingActivities: ProcessingActivitySourceOfTruth = {
         },
       ],
     },
+    {
+      name: PAName.FINANCE,
+      itSystems: [],
+      dataSubjects: [
+        {
+          name: DataSubjectName.EMPLOYEE,
+          personalData: [{ name: PersonalDataName.CPR }],
+        },
+      ],
+    },
   ],
 };
 
