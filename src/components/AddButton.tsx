@@ -10,6 +10,7 @@ const AddButtonWrapper = styled.button`
   border-radius: 4px;
   padding: 2px 6px;
   background-color: #673ab7;
+  color: white;
   text-align: center;
   font-size: 0.8em;
   font-weight: lighter;
