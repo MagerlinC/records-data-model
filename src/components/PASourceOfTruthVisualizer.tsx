@@ -7,11 +7,10 @@ const PASourceOfTruthVisualizerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-top: 8px;
   padding: 8px;
-  border-top: 1px solid white;
   flex: 1;
   background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
   .scroll-wrapper {
     max-height: 100%;
     overflow-y: auto;
