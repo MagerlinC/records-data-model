@@ -74,7 +74,7 @@ const cleanData = (dataSet: DataSet): DataSet => {
 };
 function App() {
   const [showModal, setShowModal] = useState(true);
-  const [showDataTruthVersion, setShowDataTruthVersion] = useState(true);
+  const [showDataTruth, setShowDataTruth] = useState(true);
   const [curData, setCurData] = useState(cleanData(exampleData));
 
   const addITSystem = (itSystemName: string, paName: string) => {
@@ -195,8 +195,8 @@ function App() {
           Show Underlying Data
           <input
             type="checkbox"
-            checked={showDataTruthVersion}
-            onChange={() => setShowDataTruthVersion(!showDataTruthVersion)}
+            checked={showDataTruth}
+            onChange={() => setShowDataTruth(!showDataTruth)}
           />
         </p>
       </Row>
@@ -223,7 +223,7 @@ function App() {
             )
           )}
         />
-        {showDataTruthVersion && (
+        {showDataTruth && (
           <PASourceOfTruthVisualizer
             resetData={() => setCurData(cleanData(curData))}
             populateExampleData={populateExampleData}
